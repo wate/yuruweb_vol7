@@ -18,7 +18,11 @@
 		<script src="/codemirror/mode/javascript/javascript.js"></script>
 		<script src="/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 		<script src="/emmet/emmet.min.js"></script>
-		
+		<style>
+			.CodeMirror{
+				height: 500px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -35,15 +39,20 @@
 			</div>
 		</div>
 		<div class="container-fluid">
+			<form action="#" role="form"></form>
 			<div class="row">
 				<div class="col-md-6">
-					<h3>HTML</h3>
-					<textarea name="html" id="codemirrorHTML" rows="20"></textarea>
-					<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#keybindings">キーバインドを表示</button>
+					<div class="form-group">
+						<label for="codemirrorHTML">HTML</label>
+						<textarea name="html" id="codemirrorHTML" rows="20"></textarea>
+					</div>
+					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#keybindings">キーバインド</button>
 				</div>
 				<div class="col-md-6">
-					<h3>CSS</h3>
-					<textarea name="css" id="codemirrorCSS" rows="20"></textarea>
+					<div class="form-group">
+						<label for="codemirrorCSS">CSS</label>
+						<textarea name="css" id="codemirrorCSS" rows="20"></textarea>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -59,87 +68,87 @@
 							<tbody>
 								<tr>
 									<td><strong>Cmd-E</strong> または <strong>Tab</strong></td>
-									<td>省略コードの展開<!-- Expand abbreviation --></td>
+									<td>Expand abbreviation<br /><small>省略コードの展開</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-D</strong></td>
-									<td>要素の外側を選択<!-- Balance Tag (matches opening and closing tag pair) --></td>
+									<td>Balance Tag (matches opening and closing tag pair)<br /><small>要素の外側を選択</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Cmd-D</strong></td>
-									<td>要素の内側を選択<!-- Balance Tag Inward --></td>
+									<td>Balance Tag Inward<br /><small>要素の内側を選択</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Cmd-A</strong></td>
-									<td>省略コードで包括<!-- Wrap With Abbreviation --></td>
+									<td>Wrap With Abbreviation<br /><small>省略コードで包括</small></td>
 								</tr>
 								<tr>
 									<td><strong>Ctrl-Alt-Right</strong></td>
-									<td>次の編集箇所への移動<!-- Next Edit Point --></td>
+									<td>Next Edit Point<br /><small>次の編集箇所への移動</small></td>
 								</tr>
 								<tr>
 									<td><strong>Ctrl-Alt-Left</strong></td>
-									<td>前の編集箇所への移動<!-- Previous Edit Point --></td>
+									<td>Previous Edit Point<br /><small>前の編集箇所への移動</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-L</strong></td>
-									<td>行を選択<!-- Select line --></td>
+									<td>Select line<br /><small>行を選択</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-Shift-M</strong></td>
-									<td>複数の要素を1行にする<!-- Merge Lines --></td>
+									<td>Merge Lines<br /><small>複数の要素を1行にする</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-/</strong></td>
-									<td>コメントアウトの実行・解除<!-- Toggle Comment --></td>
+									<td>Toggle Comment<br /><small>コメントアウトの実行・解除</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-J</strong></td>
-									<td>タグの分割・結合<!-- Split/Join Tag --></td>
+									<td>Split/Join Tag<br /><small>タグの分割・結合</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-K</strong></td>
-									<td>タグの削除<!-- Remove Tag --></td>
+									<td>Remove Tag<br /><small>タグの削除</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Cmd-Y</strong></td>
-									<td>数式を評価<!-- Evaluate Math Expression --></td>
+									<td>Evaluate Math Expression<br /><small>数式を評価</small></td>
 								</tr>
 								<tr>
 									<td><strong>Ctrl-Up</strong></td>
-									<td>1増加<!-- Increment Number by 1 --></td>
+									<td>Increment Number by 1<br /><small>1増やす</small></td>
 								</tr>
 								<tr>
 									<td><strong>Ctrl-Down</strong></td>
-									<td>1減少<!-- Decrement Number by 1 --></td>
+									<td>Decrement Number by 1<br /><small>1減らす</small></td>
 								</tr>
 								<tr>
 									<td><strong>Ctrl-Alt-Up</strong></td>
-									<td>0.1増加<!-- Increment Number by 0.1 --></td>
+									<td>Increment Number by 0.1<br /><small>0.1増やす</small></td>
 								</tr>
 								<tr>
 									<td><strong>Ctrl-Alt-Down</strong></td>
-									<td>0.1減少<!-- Decrement Number by 0.1 --></td>
+									<td>Decrement Number by 0.1<br /><small>0.1減らす</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Ctrl-Up</strong></td>
-									<td>10増加<!-- Increment Number by 10 --></td>
+									<td>Increment Number by 10<br /><small>10増やす</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Ctrl-Down</strong></td>
-									<td>10減少<!-- Decrement Number by 10 --></td>
+									<td>Decrement Number by 10<br /><small>10減らす</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Cmd-.</strong></td>
-									<td>次のアイテムを選択<!-- Select Next Item --></td>
+									<td>Select Next Item<br /><small>次のアイテムを選択</small></td>
 								</tr>
 								<tr>
 									<td><strong>Shift-Cmd-,</strong></td>
-									<td>前のアイテムを選択<!-- Select Previous Item --></td>
+									<td>Select Previous Item<br /><small>前のアイテムを選択</small></td>
 								</tr>
 								<tr>
 									<td><strong>Cmd-B</strong></td>
-									<td>CSSの値の反映<!-- Reflect CSS Value --></td>
+									<td>Reflect CSS Value<br /><small>CSSの値の反映</small></td>
 								</tr>
 							</tbody>
 						</table>
