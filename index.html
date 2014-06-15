@@ -18,6 +18,7 @@
 		<script src="/codemirror/mode/javascript/javascript.js"></script>
 		<script src="/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 		<script src="/emmet/emmet.min.js"></script>
+		
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -150,6 +151,7 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->	
 		<script>
+			emmetPlugin.emmet.loadSnippets({"variables": {"lang": "ja","locale": "ja-JP"}});
 			var editorHTML = CodeMirror.fromTextArea(document.getElementById("codemirrorHTML"), {
 				mode: "text/html",
 				lineNumbers: true,
