@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>Emmet</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="/codemirror/lib/codemirror.css">
+		<script src="/codemirror/lib/codemirror.js"></script>
+		<script src="/codemirror/addon/edit/closetag.js"></script>
+		<script src="/codemirror/addon/edit/matchbrackets.js"></script>
+		<script src="/codemirror/mode/xml/xml.js"></script>
+		<script src="/codemirror/mode/css/css.js"></script>
+		<script src="/codemirror/mode/javascript/javascript.js"></script>
+		<script src="/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="/emmet/emmet.min.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">第7回姫路ゆるいWeb勉強会</a>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>HTML</h3>
+					<textarea name="html" id="codemirrorHTML" rows="20">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;UTF-8&quot; /&gt;
+	&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+&lt;/body&gt;
+&lt;/html&gt;	
+					</textarea>
+					<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#keybindings">キーバインドを表示</button>
+				</div>
+				<div class="col-md-6">
+					<h3>CSS</h3>
+					<textarea name="css" id="codemirrorCSS" rows="20"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="keybindings">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">キーバインド</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-condensed table-hover">
+							<tbody>
+								<tr>
+									<td><strong>Cmd-E</strong> or <strong>Tab</strong></td>
+									<td>Expand abbreviation</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-D</strong></td>
+									<td>Balance Tag (matches opening and closing tag pair)</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Cmd-D</strong></td>
+									<td>Balance Tag Inward</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Cmd-A</strong></td>
+									<td>Wrap With Abbreviation</td>
+								</tr>
+								<tr>
+									<td><strong>Ctrl-Alt-Right</strong></td>
+									<td>Next Edit Point</td>
+								</tr>
+								<tr>
+									<td><strong>Ctrl-Alt-Left</strong></td>
+									<td>Previous Edit Point</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-L</strong></td>
+									<td>Select line</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-Shift-M</strong></td>
+									<td>Merge Lines</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-/</strong></td>
+									<td>Toggle Comment</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-J</strong></td>
+									<td>Split/Join Tag</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-K</strong></td>
+									<td>Remove Tag</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Cmd-Y</strong></td>
+									<td>Evaluate Math Expression</td>
+								</tr>
+								<tr>
+									<td><strong>Ctrl-Up</strong></td>
+									<td>Increment Number by 1</td>
+								</tr>
+								<tr>
+									<td><strong>Ctrl-Down</strong></td>
+									<td>Decrement Number by 1</td>
+								</tr>
+								<tr>
+									<td><strong>Ctrl-Alt-Up</strong></td>
+									<td>Increment Number by 0.1</td>
+								</tr>
+								<tr>
+									<td><strong>Ctrl-Alt-Down</strong></td>
+									<td>Decrement Number by 0.1</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Ctrl-Up</strong></td>
+									<td>Increment Number by 10</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Ctrl-Down</strong></td>
+									<td>Decrement Number by 10</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Cmd-.</strong></td>
+									<td>Select Next Item</td>
+								</tr>
+								<tr>
+									<td><strong>Shift-Cmd-,</strong></td>
+									<td>Select Previous Item</td>
+								</tr>
+								<tr>
+									<td><strong>Cmd-B</strong></td>
+									<td>Reflect CSS Value</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
+		<script>
+			var editorHTML = CodeMirror.fromTextArea(document.getElementById("codemirrorHTML"), {
+				mode: "text/html",
+				lineNumbers: true,
+				indentWithTabs: true,
+				matchTags: true,
+				autoCloseTags: true,
+				profile: 'xhtml'
+			});
+			var editorCSS = CodeMirror.fromTextArea(document.getElementById("codemirrorCSS"), {
+				mode: "text/css",
+				lineNumbers: true,
+				indentWithTabs: true,
+				profile: 'css'
+			});
+		</script>
+	</body>
+</html>
