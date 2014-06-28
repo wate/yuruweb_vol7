@@ -46,6 +46,7 @@
 						<textarea name="html" id="codemirrorHTML" rows="20"></textarea>
 					</div>
 					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#keybindings">キーバインド</button>
+					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#syntax">シンタックス</button>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
@@ -55,6 +56,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- キーバインド -->
 		<div class="modal fade" id="keybindings">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -157,8 +159,250 @@
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+		<!-- シンタックス -->
+		<div class="modal fade" id="syntax">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">シンタックス</h4>
+					</div>
+					<div class="modal-body">
+						<h3>Child: &gt;</h3>
+						<dl>
+							<dt>nav&gt;ul&gt;li</dt>
+							<dd>
+<pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+							</dd>
+						</dl>
+						<h3>Sibling: +</h3>
+						<dl>
+							<dt>div+p+bq</dt>
+							<dd>
+<pre><code>&lt;div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+</code></pre>
+							</dd>
+						</dl>
+						
+						<h3>Climb-up: ^</h3>
+						<dl>
+							<dt>div+div&gt;p&gt;span+em^bq</dt>
+							<dd>
+<pre><code>&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;
+    &lt;p&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;em&gt;&lt;/em&gt;
+    &lt;/p&gt;
+    &lt;blockquote&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+</code></pre>
+							</dd>
+							<dt>div+div&gt;p&gt;span+em^^bq</dt>
+							<dd>
+<pre><code>&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;
+    &lt;p&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;em&gt;&lt;/em&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+</code></pre>
+							</dd>
+						</dl>
+						<h3>Grouping: ()</h3>
+						<dl>
+							<dt>div&gt;(header&gt;ul&gt;li*2&gt;a)+footer&gt;p</dt>
+							<dd>
+<pre><code>&lt;div&gt;
+    &lt;header&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/header&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre>
+							</dd>
+							<dt>(div&gt;dl&gt;(dt+dd)*3)+footer&gt;p</dt>
+							<dd>
+<pre><code>&lt;div&gt;
+    &lt;dl&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/div&gt;
+&lt;footer&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/footer&gt;
+</code></pre>
+							</dd>
+						</dl>
+						<h3>Multiplication: *</h3>
+						<dl>
+							<dt>ul&gt;li*5</dt>
+							<dd>
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+							</dd>
+						</dl>
+						<h3>Item numbering: $</h3>
+						<dl>
+							<dt>ul&gt;li.item$*5</dt>
+							<dd>
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;item1&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item2&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item3&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item4&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item5&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+							</dd>
+							<dt>h$[title=item$]{Header $}*3</dt>
+							<dd>
+<pre><code>&lt;h1 title=&quot;item1&quot;&gt;Header 1&lt;/h1&gt;
+&lt;h2 title=&quot;item2&quot;&gt;Header 2&lt;/h2&gt;
+&lt;h3 title=&quot;item3&quot;&gt;Header 3&lt;/h3&gt;
+</code></pre>
+							</dd>
+							<dt>ul&gt;li.item$$$*5</dt>
+							<dd>
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;item001&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item002&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item003&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item004&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item005&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+							</dd>
+							<dt>ul&gt;li.item$@-*5</dt>
+							<dd>
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;item5&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item4&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item3&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item2&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item1&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+							</dd>
+							<dt>ul&gt;li.item$@3*5</dt>
+							<dd>
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;item3&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item4&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item5&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item6&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;item7&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+							</dd>
+						</dl>
+						<h3>ID and CLASS attributes</h3>
+						<dl>
+							<dt>#header</dt>
+							<dd>
+								<pre><code>&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</code></pre>
+							</dd>
+							<dt>.title</dt>
+							<dd>
+								<pre><code>&lt;div class=&quot;title&quot;&gt;&lt;/div&gt;</code></pre>
+							</dd>
+							<dt>form#search.wide</dt>
+							<dd>
+								<pre><code>&lt;form id=&quot;search&quot; class=&quot;wide&quot;&gt;&lt;/form&gt;</code></pre>
+							</dd>
+							<dt>p.class1.class2.class3</dt>
+							<dd>
+								<pre><code>&lt;p class=&quot;class1 class2 class3&quot;&gt;&lt;/p&gt;</code></pre>
+							</dd>
+						</dl>
+						<h3>Custom attributes</h3>
+						<dl>
+							<dt>p[title=&quot;Hello world&quot;]</dt>
+							<dd>
+								<pre><code>&lt;p title=&quot;Hello world&quot;&gt;&lt;/p&gt;</code></pre>
+							</dd>
+							<dt>td[rowspan=2 colspan=3 title]</dt>
+							<dd>
+								<pre><code>&lt;td rowspan=&quot;2&quot; colspan=&quot;3&quot; title=&quot;&quot;&gt;&lt;/td&gt;</code></pre>
+							</dd>
+							<dt>[a='value1' b=&quot;value2&quot;]</dt>
+							<dd>
+								<pre><code>&lt;div a=&quot;value1&quot; b=&quot;value2&quot;&gt;&lt;/div&gt;</code></pre>
+							</dd>
+						</dl>
+						<h3>Text: {}</h3>
+						<dl>
+							<dt>a{Click me}</dt>
+							<dd>
+								<pre><code>&lt;a href=&quot;&quot;&gt;Click me&lt;/a&gt;</code></pre>
+							</dd>
+							<dt>p&gt;{Click }+a{here}+{ to continue}</dt>
+							<dd>
+								<pre><code>&lt;p&gt;Click &lt;a href=&quot;&quot;&gt;here&lt;/a&gt; to continue&lt;/p&gt;</code></pre>
+							</dd>
+						</dl>
+						<h3>Implicit tag names</h3>
+						<dl>
+							<dt>.class</dt>
+							<dd>
+								<pre><code>&lt;div class=&quot;class&quot;&gt;&lt;/div&gt;</code></pre>
+							</dd>
+							<dt>em&gt;.class</dt>
+							<dd>
+								<pre><code>&lt;em&gt;&lt;span class=&quot;class&quot;&gt;&lt;/span&gt;&lt;/em&gt;</code></pre>
+							</dd>
+							<dt>ul&gt;.class</dt>
+							<dd>
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;class&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+							</dd>
+							<dt>table&gt;.row&gt;.col</dt>
+							<dd>
+<pre><code>&lt;table&gt;
+    &lt;tr class=&quot;row&quot;&gt;
+        &lt;td class=&quot;col&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+							</dd>
+						</dl>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->	
-		<script>
+				<script>
 			emmetPlugin.emmet.loadSnippets({"variables": {"lang": "ja","locale": "ja-JP"}});
 			var editorHTML = CodeMirror.fromTextArea(document.getElementById("codemirrorHTML"), {
 				mode: "text/html",
